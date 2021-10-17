@@ -1,9 +1,9 @@
 package torpedo.model;
 
 public class Players {
-/**
- * Players osztály a játékos(ok) számára. A játékosokhoz hozzárendeljük a Ships osztályt.
- * */
+    /**
+     * Players osztály a játékos(ok) számára. A játékosokhoz hozzárendeljük a Ships osztályt.
+     */
     public String[][] map_ships;
     public String[][] map_moves;
     public String name;

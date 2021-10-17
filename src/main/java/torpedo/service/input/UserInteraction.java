@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import torpedo.model.MapVO;
 import torpedo.model.Players;
 import torpedo.model.Ships;
+import torpedo.service.moves.PlayerMoves;
 import torpedo.service.validators.MapValidators;
 
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ public class UserInteraction {
     private final BufferedReader reader;
     private final MapValidators mapValidators = new MapValidators();
     private final MapVO mapvo = new MapVO(6, 6);
+    private final PlayerMoves playerMoves = new PlayerMoves();
 
     public UserInteraction(BufferedReader reader) {
         this.reader = reader;
@@ -37,15 +39,11 @@ public class UserInteraction {
             String ship_place = readInput();
 
             if (mapValidators.isValidShipPlace(ship_place, player.map_ships)) {
-                String[][] map = new String[6][6];
-                map[0][0] = "X";
-                player.setMap_ships(map);
+                playerMoves.playerMoves(player, ship_place);
             } else {
                 LOGGER.info("Nem jó hely!");
             }
-
         }
-
         return "";
     }
 
