@@ -26,8 +26,9 @@ public class Main {
         Players player_computer = new Players(x_size, y_size, new Ships(), "Gép");
 
         MapValidators mapValidators = new MapValidators();
-        String test = "b4-b4";
+        String test = "A3-A2";
 
+        userInteraction.readPlayerShips(player_user);
         System.out.println(mapValidators.isValidShipPlace(test, player_user.map_ships));
     }
 }
