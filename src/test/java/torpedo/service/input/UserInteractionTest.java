@@ -1,5 +1,6 @@
 package torpedo.service.input;
 
+import org.junit.jupiter.api.Test;
 import torpedo.service.validators.MapValidators;
 
     /**
@@ -7,4 +8,15 @@ import torpedo.service.validators.MapValidators;
      */
     public class UserInteractionTest {
 
+        @Test
+        void readPlayerName() {
+        }
+
+        @Test
+        void readPlayerShips() {
+        }
+
+        @Test
+        void readInput() {
+        }
     }
