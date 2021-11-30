@@ -33,9 +33,15 @@ Itt nem határozunk meg kötelező elvárásokat, tetszőleges kezdetleges inter
 Egység tesztek 80% lefedettséget biztosítanak üzleti logikát tartalmazó osztályokra (tehát például VO osztályokra nem szükséges Egység teszteket írni)
 
 Elvárások a második (14. heti) védésre:
+
 Spring IoC / DI framework bevezetése a projektbe
+
 A teljes Torpedó játék funkcionalitás lefejlesztésre került (lehetséges egy játékot végig játszani elejétől a végéig)
+
 Az alkalmazás egy adatbázisba lementi a játékosok nevét és azt, hogy hányszor nyertek
+
 Az alkalmazás képes megjeleníteni parancssorban egy high score táblázatot (melyik játékos hány meccset nyert)
+
 Egy aktuálisan folyamatban lévő játék állást az alkalmazás képes egy XML fájlba kimenteni és később visszatölteni (tehát a játékos onnan folytathatja a játékot, ahol korábban abba hagyta)
+
 Egység tesztek továbbra is 80% lefedettséget biztosítanak üzleti logikát tartalmazó osztályokra
