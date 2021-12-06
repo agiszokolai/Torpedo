@@ -9,12 +9,36 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayerMoves {
+
     public PlayerMoves() {
     }
 
-    public void playerMoves(Players player, String ship_place) {
+    public boolean playerMove(Players player1, String ship_place, Players player2) {
+
+        int x = MapVO.MAP_X_DESCRIPTIONS.indexOf(ship_place.substring(0, 1).toUpperCase());
+        int y = MapVO.MAP_Y_DESCRIPTIONS.indexOf(ship_place.substring(1));
+
+        player1.map_moves[y][x] = player2.map_ships[y][x] == null ? "X" : "+";
+
+        return player1.map_moves[y][x].equals("+");
+    }
+
+    public void placeShipForPlayer(Players player, String ship_place) {
+
+        List<String> data = getShipListByShipPlace(ship_place);
+
+        for (String d : data) {
+            int x = MapVO.MAP_X_DESCRIPTIONS.indexOf(d.substring(0, 1).toUpperCase());
+            int y = MapVO.MAP_Y_DESCRIPTIONS.indexOf(d.substring(1));
+
+            player.map_ships[y][x] = "+";
+        }
+    }
+
+    private List<String> getShipListByShipPlace(String ship_place) {
 
         List<String> data = new ArrayList<>(Arrays.asList(ship_place.split("-")));
+
         if (data.size() == 2) {
 
             String first_x_str = data.get(0).substring(0, 1).toUpperCase();
@@ -42,15 +66,9 @@ public class PlayerMoves {
                     data.add(new_element);
                 }
             }
-
         }
 
-        for (String d : data) {
-            int x = MapVO.MAP_X_DESCRIPTIONS.indexOf(d.substring(0, 1).toUpperCase());
-            int y = MapVO.MAP_Y_DESCRIPTIONS.indexOf(d.substring(1));
-
-            player.map_ships[y][x] = "+";
-        }
+        return data;
     }
 }
 

@@ -9,11 +9,10 @@ public class Players {
     public String name;
     public Ships ships;
 
-    public Players(int x_size, int y_size, Ships ships, String name) {
+    public Players(int x_size, int y_size, Ships ships) {
         this.map_ships = new String[x_size][y_size];
         this.map_moves = new String[x_size][y_size];
         this.ships = ships;
-        this.name = name;
     }
 
     public String getName() {

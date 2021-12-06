@@ -17,25 +17,6 @@ public class MapVO {
         this.map_y_size = y_size;
     }
 
-    public void getMap(String[][] map) {
-
-        for (String desc : MAP_X_DESCRIPTIONS) {
-            System.out.print("\t" + desc + " ");
-        }
-
-        System.out.println("\n  _________________________");
-        for (int i = 0; i < map.length; i++) {
-            System.out.print(MAP_Y_DESCRIPTIONS.get(i) + " | ");
-
-            for (int j = 0; j < map[i].length; j++) {
-                System.out.print(MessageFormat.format("{0} | ", map[i][j] == null ? " " : map[i][j]));
-            }
-
-            System.out.println();
-        }
-        System.out.println("  _________________________");
-    }
-
     @Override
     public String toString() {
         return "MapVO{" +

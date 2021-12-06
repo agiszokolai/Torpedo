@@ -15,9 +15,12 @@ public class MapValidators {
     //a hajó kívánt helye helyesen van-e megadva
     public boolean isValidShipPlace(String input, String[][] player_map) {
 
-        if (!isValidInputFormat(input) || !isValidDistance(input) || !isPlaceOccupied(input, player_map)) return false;
+        return isValidInputFormat(input) && isValidDistance(input) && isPlaceOccupied(input, player_map);
+    }
 
-        return true;
+    public boolean isValidMovePlace(String input) {
+
+        return isValidInputFormat(input) && isValidDistance(input);
     }
 
     // a hajó kívánt helyének a formátuma helyesen van-e megadva
@@ -92,16 +95,13 @@ public class MapValidators {
                     String new_element = MapVO.MAP_X_DESCRIPTIONS.get(max_x - 1) + MapVO.MAP_Y_DESCRIPTIONS.get(first_y);
                     check_data.add(new_element);
                 }
-
             }
-
-
         }
 
         for (String check_d : check_data) {
-            System.out.println(check_d);
-            int x_place = MapVO.MAP_X_DESCRIPTIONS.indexOf(check_d.substring(0, 1).toUpperCase());
-            int y_place = MapVO.MAP_Y_DESCRIPTIONS.indexOf(check_d.substring(1));
+            //System.out.println(check_d);
+            int y_place = MapVO.MAP_X_DESCRIPTIONS.indexOf(check_d.substring(0, 1).toUpperCase());
+            int x_place = MapVO.MAP_Y_DESCRIPTIONS.indexOf(check_d.substring(1));
 
             // X helyek (A-B-C-D-E-F)
             for (int i = 0; i < player_map.length; i++) {
@@ -113,12 +113,18 @@ public class MapValidators {
 
                     if (y_place != j) continue;
 
-                    if (player_map[i][j] != null) return false;
+                    if (j == 0 && player_map[i][j + 1] != null) return  false;
+                    else if (j > 0 && j < 5 && (player_map[i][j + 1] != null || player_map[i][j - 1] != null)) return  false;
+                    else if (j == 5 && player_map[i][j - 1] != null) return  false;
 
+                    if (i == 0 && player_map[i + 1][j] != null) return  false;
+                    else if (i > 0 && i < 5 && (player_map[i + 1][j] != null || player_map[i - 1][j] != null)) return  false;
+                    else if (i == 5 && player_map[i - 1][j] != null) return  false;
+
+                    if (player_map[i][j] != null) return false;
                 }
             }
         }
-
         return true;
     }
 }
