@@ -1,8 +1,9 @@
 package torpedo.configuration;
 
 import org.springframework.context.annotation.Bean;
-import torpedo.model.GameState;
+import org.springframework.context.annotation.Configuration;
 import torpedo.model.Players;
+import torpedo.model.Ships;
 import torpedo.service.game.GameController;
 import torpedo.service.game.GameStepPerformer;
 import torpedo.service.input.UserInteraction;
@@ -13,30 +14,37 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Configuration
 public class ApplicationConfiguration {
+
     @Bean
     Connection connection() throws SQLException {
-        return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/progtech", "sa", "");
+        return DriverManager.getConnection("jdbc:h2:~/progtech", "sa", "");
     }
-    @Bean
-    public GameController gameController(GameStepPerformer gameStepPerformer, Players player1, Players player2) {
+
+    @Bean(initMethod = "start")
+    GameController gameController(GameStepPerformer gameStepPerformer, Players player1, Players player2) {
         return new GameController(gameStepPerformer, player1, player2);
     }
 
     @Bean
-    public GameStepPerformer gameStepPerformer(UserInteraction userInteraction) {
+    Players player1() {
+        return new Players(6, 6, new Ships());
+    }
+
+    @Bean
+    Players player2() {
+        return new Players(6, 6, new Ships());
+    }
+
+    @Bean
+    GameStepPerformer gameStepPerformer(UserInteraction userInteraction) {
         return new GameStepPerformer(userInteraction);
     }
 
     @Bean
-    public UserInteraction userInteraction() {
+    UserInteraction userInteraction() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        UserInteraction userInteraction = new UserInteraction(bufferedReader);
-        return null;
-    }
-
-    @Bean
-    public GameState gameState() {
-        return null;
+        return new UserInteraction(bufferedReader);
     }
 }

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Torpedo</groupId>
+    <groupId>torpedo</groupId>
     <artifactId>torpedo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -77,7 +77,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        Torpedo.torpedo.Main
+                                        torpedo.Main
                                     </mainClass>
                                 </manifest>
                             </archive>
@@ -99,9 +99,9 @@
                 <version>0.8.2</version>
                 <configuration>
                     <excludes>
-                        <exclude>nye/Torpedo/torpedo/model/*</exclude>
-                        <exclude>nye/Torpedo/torpedo/Main.*</exclude>
-                        <exclude>nye/Torpedo/torpedo/ui/PrintWrapper.*</exclude>
+                        <exclude>torpedo/model/*</exclude>
+                        <exclude>torpedo/Main.*</exclude>
+                        <exclude>torpedo/ui/PrintWrapper.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
