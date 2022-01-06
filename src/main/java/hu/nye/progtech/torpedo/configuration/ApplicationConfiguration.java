@@ -49,7 +49,7 @@ public class ApplicationConfiguration {
     Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:./progtech", "sa", "");
     }
-    @Bean(destroyMethod = "close")
+    @Bean
     GameResultRepositoryJdbc gameResultRepositoryJdbc(Connection connection, GameController gamecontroller) throws SQLException {
         return new GameResultRepositoryJdbc(connection, gamecontroller);
     }
